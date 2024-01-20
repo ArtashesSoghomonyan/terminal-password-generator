@@ -2,23 +2,19 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+
+	"github.com/ArtashesSoghomonyan/terminal-password-generator/generator"
+	"github.com/ArtashesSoghomonyan/terminal-password-generator/prompts"
 )
 
-const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
 func main() {
-	fmt.Println(generatePassword())
-}
+	fmt.Println("*** Password generator ***")
 
-func generatePassword() string {
-	var passwordLength int = 6
-	var result string = ""
-	var characters string = alphabet
-
-	for i := 1; i <= passwordLength; i++ {
-		result += string(characters[rand.Intn(len(characters))])
+	var passwordParams generator.Password = generator.Password{
+		Uppercase: prompts.YesNo("Would you like to include uppercase letters?"),
+		Numbers:   prompts.YesNo("Would you like to include numbers?"),
+		Symbols:   prompts.YesNo("Would you like to include symbols?"),
 	}
 
-	return result
+	fmt.Println(generator.GeneratePassword(passwordParams))
 }
