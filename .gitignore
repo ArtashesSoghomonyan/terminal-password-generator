@@ -1,6 +1,3 @@
-# main executable file
-main
-
 # editors and IDEs
 .idea/
 .vscode/
