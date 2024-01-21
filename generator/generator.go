@@ -16,25 +16,33 @@ type Password struct {
 	Length    int
 }
 
-func GeneratePassword(params Password) string {
-	var result string = ""
-	var characters string = alphabet
+func GeneratePassword(params Password, numberOfPasswords int) []string {
+	var result string
+	var passwords []string = []string{}
+	var characters string
 
-	if params.Uppercase {
-		characters += uppercaseAlphabet
+	for n := 1; n <= numberOfPasswords; n++ {
+		result = ""
+		characters = alphabet
+
+		if params.Uppercase {
+			characters += uppercaseAlphabet
+		}
+
+		if params.Numbers {
+			characters += numbers
+		}
+
+		if params.Symbols {
+			characters += symbols
+		}
+
+		for i := 1; i <= params.Length; i++ {
+			result += string(characters[rand.Intn(len(characters))])
+		}
+
+		passwords = append(passwords, result)
 	}
 
-	if params.Numbers {
-		characters += numbers
-	}
-
-	if params.Symbols {
-		characters += symbols
-	}
-
-	for i := 1; i <= params.Length; i++ {
-		result += string(characters[rand.Intn(len(characters))])
-	}
-
-	return result
+	return passwords
 }

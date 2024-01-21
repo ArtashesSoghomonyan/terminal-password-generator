@@ -17,5 +17,11 @@ func main() {
 		Length:    prompts.IntPrompt("What would be the length of the passwords?"),
 	}
 
-	fmt.Println(generator.GeneratePassword(passwordParams))
+	var numberOfPasswords int = prompts.IntPrompt("How many passwords would you like to generate?")
+
+	var passwords []string = generator.GeneratePassword(passwordParams, numberOfPasswords)
+
+	for index, password := range passwords {
+		fmt.Printf("%d) %s\n", index+1, password)
+	}
 }
