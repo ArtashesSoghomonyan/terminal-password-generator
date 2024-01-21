@@ -1,6 +1,8 @@
 package generator
 
-import "math/rand"
+import (
+	"math/rand"
+)
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 const uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -11,10 +13,10 @@ type Password struct {
 	Uppercase bool
 	Numbers   bool
 	Symbols   bool
+	Length    int
 }
 
 func GeneratePassword(params Password) string {
-	var passwordLength int = 6
 	var result string = ""
 	var characters string = alphabet
 
@@ -30,7 +32,7 @@ func GeneratePassword(params Password) string {
 		characters += symbols
 	}
 
-	for i := 1; i <= passwordLength; i++ {
+	for i := 1; i <= params.Length; i++ {
 		result += string(characters[rand.Intn(len(characters))])
 	}
 

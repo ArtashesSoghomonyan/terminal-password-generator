@@ -14,6 +14,7 @@ func main() {
 		Uppercase: prompts.YesNo("Would you like to include uppercase letters?"),
 		Numbers:   prompts.YesNo("Would you like to include numbers?"),
 		Symbols:   prompts.YesNo("Would you like to include symbols?"),
+		Length:    prompts.IntPrompt("What would be the length of the passwords?"),
 	}
 
 	fmt.Println(generator.GeneratePassword(passwordParams))
